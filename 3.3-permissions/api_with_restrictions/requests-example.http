@@ -1,0 +1,117 @@
+# примеры API-запросов
+
+@baseUrl = http://localhost:8000/api
+
+# получение объявлений
+GET {{baseUrl}}/advertisements/
+Content-Type: application/
+#Authorization: Token 8c059c56ba82a9ec1edca02e12cee29318e1573d
+#Authorization: Token 1d6322e5c58c60b85baae89ae5cc661b6ba80102
+Authorization: Token ab6640712f2c45a8e9231386d5fa5c89de2b8051
+###
+
+# создание объявления
+POST {{baseUrl}}/advertisements/
+Content-Type: application/json
+Authorization: Token 8c059c56ba82a9ec1edca02e12cee29318e1573d
+
+{
+  "title": "Отдам котят в добрые руки",
+  "description": "Бесплатно"
+}
+
+###
+
+# создание объявления
+POST {{baseUrl}}/advertisements/
+Content-Type: application/json
+Authorization: Token 1d6322e5c58c60b85baae89ae5cc661b6ba80102
+
+{
+  "title": "Щeнки ВЕО",
+  "description": "От титулованных родителей"
+}
+
+###
+
+# создание объявления
+POST {{baseUrl}}/advertisements/
+Content-Type: application/json
+Authorization: Token ab6640712f2c45a8e9231386d5fa5c89de2b8051
+
+{
+  "title": "Часы с кукушкой",
+  "description": "Цена договорная"
+}
+
+###
+
+# попытка поменять объявление
+PATCH {{baseUrl}}/advertisements/8/
+Content-Type: application/json
+Authorization: Token 8c059c56ba82a9ec1edca02e12cee29318e1573d
+#Authorization: Token 1d6322e5c58c60b85baae89ae5cc661b6ba80102
+#Authorization: Token ab6640712f2c45a8e9231386d5fa5c89de2b8051
+
+{
+  "status": "OPEN"
+}
+###
+
+# фильтрация по создателю
+GET {{baseUrl}}/advertisements/?creator=3
+Content-Type: application/json
+#Authorization: Token ab6640712f2c45a8e9231386d5fa5c89de2b8051
+###
+
+# фильтрация по по статусу и создателю
+GET {{baseUrl}}/advertisements/?status=OPEN&creator=3
+Content-Type: application/
+
+###
+
+# фильтрация по дате
+GET {{baseUrl}}/advertisements/?created_at_before=2023-09-23
+Content-Type: application/
+
+###
+
+# удаление объявлений
+DELETE {{baseUrl}}/advertisements/20/
+Content-Type: application/json
+#Authorization: Token 8c059c56ba82a9ec1edca02e12cee29318e1573d
+#Authorization: Token 1d6322e5c58c60b85baae89ae5cc661b6ba80102
+Authorization: Token ab6640712f2c45a8e9231386d5fa5c89de2b8051
+###
+
+# добавление в избранное
+POST {{baseUrl}}/advertisements/favorites/
+Content-Type: application/json
+#Authorization: Token 8c059c56ba82a9ec1edca02e12cee29318e1573d
+#Authorization: Token 1d6322e5c58c60b85baae89ae5cc661b6ba80102
+Authorization: Token ab6640712f2c45a8e9231386d5fa5c89de2b8051
+
+{
+  "advertisement": "49"
+}
+###
+
+# получение  избранного
+GET {{baseUrl}}/advertisements/favorites_get/
+Content-Type: application/json
+#Authorization: Token 8c059c56ba82a9ec1edca02e12cee29318e1573d
+Authorization: Token 1d6322e5c58c60b85baae89ae5cc661b6ba80102
+#Authorization: Token ab6640712f2c45a8e9231386d5fa5c89de2b8051
+
+###
+
+# удаление из избранного
+DELETE  {{baseUrl}}/advertisements/favorites_delete/
+Content-Type: application/json
+Authorization: Token 8c059c56ba82a9ec1edca02e12cee29318e1573d
+#Authorization: Token 1d6322e5c58c60b85baae89ae5cc661b6ba80102
+#Authorization: Token ab6640712f2c45a8e9231386d5fa5c89de2b8051
+
+{
+  "advertisement": "7"
+}
